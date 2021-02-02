@@ -9,6 +9,20 @@ const noteIndex = async (req, res) => {
   }
 };
 
+const noteCreate = (req, res) => {
+  res.render("create", { title: "create a new note" });
+};
+
+const notePost = (req, res) => {
+  const note = new Note(req.body);
+  note
+    .save()
+    .then((result) => res.redirect("/"))
+    .catch((err) => console.log(err));
+};
+
 module.exports = {
-  noteIndex
+  noteIndex,
+  noteCreate,
+  notePost
 };
