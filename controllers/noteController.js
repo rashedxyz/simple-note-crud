@@ -1,5 +1,6 @@
 const Note = require("../models/note");
 
+// show notes
 const noteIndex = async (req, res) => {
   try {
     const result = await Note.find().sort({ createdAt: -1 });
@@ -9,10 +10,12 @@ const noteIndex = async (req, res) => {
   }
 };
 
+// render create note page
 const noteCreate = (req, res) => {
   res.render("create", { title: "create a new note" });
 };
 
+// save note
 const notePost = (req, res) => {
   const note = new Note(req.body);
   note
@@ -21,8 +24,35 @@ const notePost = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+// show single note
+const noteDetails = (req, res) => {
+  const id = req.params.id;
+  Note.findById(id)
+    .then((result) => {
+      res.render("details", { note: result, title: "Note Details" });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("404", { title: "Note not found" });
+    });
+};
+
+// delete note
+const noteDelete = (req, res) => {
+  const id = req.params.id;
+  Note.findByIdAndDelete(id)
+    .then((result) => {
+      res.json({ redirect: "/" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 module.exports = {
   noteIndex,
   noteCreate,
-  notePost
+  notePost,
+  noteDetails,
+  noteDelete
 };
