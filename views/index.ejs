@@ -14,6 +14,7 @@
               <%= note.title %>
             </h3>
           </a>
+          <a href="/edit/<%= note._id%>">Edit</a>
           <button class="delete-note" data-doc="<%= note._id %>">Delete</button>
           <% }) %>
             <% } else { %>

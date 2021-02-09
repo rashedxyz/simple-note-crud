@@ -26,7 +26,7 @@ const notePost = (req, res) => {
 
 // show single note
 const noteDetails = (req, res) => {
-  const id = req.params.id;
+  const id = req.params._id;
   Note.findById(id)
     .then((result) => {
       res.render("details", { note: result, title: "Note Details" });
@@ -39,7 +39,7 @@ const noteDetails = (req, res) => {
 
 // delete note
 const noteDelete = (req, res) => {
-  const id = req.params.id;
+  const id = req.params._id;
   Note.findByIdAndDelete(id)
     .then((result) => {
       res.json({ redirect: "/" });
@@ -49,10 +49,34 @@ const noteDelete = (req, res) => {
     });
 };
 
+// render note edit page
+const noteEditPage = (req, res) => {
+  const id = req.params._id;
+  Note.findById(id)
+    .then((result) => {
+      res.render("edit", { note: result, title: "Note Edit" });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("404", { title: "Note not found" });
+    });
+};
+
+// note edit
+const noteEdit = (req, res) => {
+  const id = req.params._id;
+  note
+    .findByIdAndUpdate(id, req.body)
+    .then((result) => res.redirect("/"))
+    .catch((err) => console.log(err));
+};
+
 module.exports = {
   noteIndex,
   noteCreate,
   notePost,
   noteDetails,
-  noteDelete
+  noteDelete,
+  noteEditPage,
+  noteEdit
 };

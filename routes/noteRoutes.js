@@ -8,13 +8,17 @@ const {
   notePost,
   noteCreate,
   noteDetails,
-  noteDelete
+  noteDelete,
+  noteEditPage,
+  noteEdit
 } = noteController;
 
 router.get("/", noteIndex);
 router.post("/", notePost);
 router.get("/create", noteCreate);
-router.get("/:id", noteDetails);
-router.delete("/:id", noteDelete);
+router.get("/:_id", noteDetails);
+router.delete("/:_id", noteDelete);
+router.get("/edit/:_id", noteEditPage);
+router.put("/:_id", noteEdit);
 
 module.exports = router;

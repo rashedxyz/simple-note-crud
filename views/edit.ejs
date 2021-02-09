@@ -1,0 +1,15 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+  <body>
+    <%- include("./partials/nav.ejs") %>
+      <form action="/" method="POST">
+        <label for="title">Note title:</label>
+        <input type="text" id="title" name="title" value="<%= note.title %>" required>
+        <label for="body">Note body:</label>
+        <textarea id="body" name="body" required><%= note.body %></textarea>
+        <button>Submit</button>
+      </form>
+  </body>
+
+</html>
