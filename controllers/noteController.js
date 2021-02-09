@@ -65,8 +65,7 @@ const noteEditPage = (req, res) => {
 // note edit
 const noteEdit = (req, res) => {
   const id = req.params._id;
-  note
-    .findByIdAndUpdate(id, req.body)
+  Note.findByIdAndUpdate(id, req.body)
     .then((result) => res.redirect("/"))
     .catch((err) => console.log(err));
 };

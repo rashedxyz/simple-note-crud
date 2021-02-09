@@ -3,7 +3,7 @@
 
   <body>
     <%- include("./partials/nav.ejs") %>
-      <form action="/" method="POST">
+      <form action="/<%= note._id%>" method="POST">
         <label for="title">Note title:</label>
         <input type="text" id="title" name="title" value="<%= note.title %>" required>
         <label for="body">Note body:</label>
