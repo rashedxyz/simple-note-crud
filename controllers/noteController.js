@@ -1,4 +1,4 @@
-const Note = require("../models/note");
+const Note = require("../models/Note");
 
 // show notes
 const noteIndex = async (req, res) => {
