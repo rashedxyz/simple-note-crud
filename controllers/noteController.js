@@ -20,7 +20,7 @@ const notePost = (req, res) => {
   const note = new Note(req.body);
   note
     .save()
-    .then((result) => res.redirect("/"))
+    .then((result) => res.redirect("/notes"))
     .catch((err) => console.log(err));
 };
 
@@ -42,7 +42,7 @@ const noteDelete = (req, res) => {
   const id = req.params._id;
   Note.findByIdAndDelete(id)
     .then((result) => {
-      res.json({ redirect: "/" });
+      res.json({ redirect: "/notes" });
     })
     .catch((err) => {
       console.log(err);
@@ -66,7 +66,7 @@ const noteEditPage = (req, res) => {
 const noteEdit = (req, res) => {
   const id = req.params._id;
   Note.findByIdAndUpdate(id, req.body)
-    .then((result) => res.redirect("/"))
+    .then((result) => res.redirect("/notes"))
     .catch((err) => console.log(err));
 };
 

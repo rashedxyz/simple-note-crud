@@ -9,12 +9,12 @@
       </h2>
       <% if (notes.length> 0 ) { %>
         <% notes.forEach( note=> { %>
-          <a class="single" href="/<%= note._id %>">
+          <a class="single" href="/notes/<%= note._id %>">
             <h3 class="title">
               <%= note.title %>
             </h3>
           </a>
-          <a href="/edit/<%= note._id%>">Edit</a>
+          <a href="/notes/edit/<%= note._id%>">Edit</a>
           <button class="delete-note" data-doc="<%= note._id %>">Delete</button>
           <% }) %>
             <% } else { %>
@@ -25,7 +25,7 @@
                   const deleteBtn = document.querySelectorAll(".delete-note");
                   deleteBtn.forEach((btn) => {
                     btn.addEventListener("click", (e) => {
-                      const endPoint = `/${e.target.dataset.doc}`;
+                      const endPoint = `/notes/${e.target.dataset.doc}`;
                       fetch(endPoint, {
                         method: "DELETE"
                       })

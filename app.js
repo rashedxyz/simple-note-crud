@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const noteRoutes = require("./routes/noteRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 // express app
 const app = express();
@@ -31,7 +32,9 @@ app.set("view engine", "ejs");
 // middleware and static files
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(morgan("dev"));
 
 // routes
-app.use("/", noteRoutes);
+app.use("/notes", noteRoutes);
+app.use(authRoutes);
